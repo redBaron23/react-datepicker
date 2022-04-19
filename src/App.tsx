@@ -6,24 +6,28 @@ import { Label } from "./styles/CommonStyles";
 import TimePicker from "./Components/TimePicker";
 
 function App() {
+
+  const handleSubmit = () => {
+
+  }
   return (
-    <RootContainer>
+    <RootContainer onSubmit={handleSubmit}>
       <Container>
         <HalfContainer>
           <Label>Select Date</Label>
           <DatePicker />
         </HalfContainer>
         <HalfContainer>
-          <Input placeholder="Enter your email" />
+          <Input placeholder="Enter your email" required/>
           <TimePicker />
         </HalfContainer>
       </Container>
-      <Button>Get Appointment</Button>
+      <Button type="submit">Get Appointment</Button>
     </RootContainer>
   );
 }
 
-const RootContainer = styled.section`
+const RootContainer = styled.form`
   padding: 1em;
   display: flex;
   flex-direction: column;

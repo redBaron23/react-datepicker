@@ -17,7 +17,10 @@ const timeOptions = [
   "5:00 AM",
 ];
 
-const TimePicker = () => {
+interface Props {
+}
+
+const TimePicker = (props: Props) => {
   const [selectedTimeOption, setSelectedTimeOption] = useState("");
 
   return (
@@ -43,7 +46,7 @@ const TimePicker = () => {
           style={{ paddingLeft: "1em" }}
         />
         <CustomLabel>All times are in central Time (Bangladesh)</CustomLabel>
-        <Arrow>&#62;</Arrow>
+        <Arrow color={theme.colors.darkWarning}>&#62;</Arrow>
       </Warning>
     </Container>
   );
