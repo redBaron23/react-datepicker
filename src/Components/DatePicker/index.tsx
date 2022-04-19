@@ -26,13 +26,13 @@ const DatePicker = () => {
     onDateFocus,
     goToPreviousMonths,
     goToNextMonths,
+    goToDate,
   } = useDatepicker({
     startDate: startDate,
     endDate: endDate,
     focusedInput: focusedInput,
     onDatesChange: handleDateChange,
     numberOfMonths: 1,
-    
   });
 
   function handleDateChange(data: any) {
@@ -57,6 +57,8 @@ const DatePicker = () => {
         onDateSelect,
         onDateFocus,
         onDateHover,
+        goToDate,
+        activeDate: activeMonths[0].date,
       }}
     >
       <Month

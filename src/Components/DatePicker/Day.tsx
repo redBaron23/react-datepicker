@@ -1,6 +1,10 @@
 import { useDay } from "@datepicker-react/hooks";
 import { useContext, useRef } from "react";
+import styled from "styled-components";
+import Global from "../../styles/Global";
+import theme from "../../styles/theme";
 import ColorUtils from "../../Utils/ColorUtils";
+import DateUtils from "../../Utils/DateUtils";
 import DatepickerContext from "./datepickerContext";
 
 interface Props {
@@ -54,40 +58,60 @@ const Day = (props: Props) => {
   const getColorFn = ColorUtils.getColor(
     isSelected,
     isSelectedStartOrEnd,
-    isWithinHoverRange,
     disabledDate
   );
 
+  const currentColor = getColorFn({
+    selectedFirstOrLastColor: "#FFFFFF",
+    normalColor: "#001217",
+    selectedColor: "#FFFFFF",
+    disabledColor: "#808285",
+  });
+
+  const currentBackground = getColorFn({
+    normalColor: theme.colors.primary,
+    selectedFirstOrLastColor: theme.colors.darkPrimary,
+    selectedColor: "#71c9ed",
+    rangeHoverColor: "#71c9ed",
+    disabledColor: "#FFFFFF",
+  });
+
   return (
-    <button
-      onClick={() => onClick()}
+    <DayButton
+      onClick={onClick}
       onKeyDown={onKeyDown}
       onMouseEnter={onMouseEnter}
       tabIndex={tabIndex}
       type="button"
       ref={dayRef}
-      style={{
-        padding: "8px",
-        border: 0,
-        color: getColorFn({
-          selectedFirstOrLastColor: "#FFFFFF",
-          normalColor: "#001217",
-          selectedColor: "#FFFFFF",
-          rangeHoverColor: "#FFFFFF",
-          disabledColor: "#808285",
-        }),
-        background: getColorFn({
-          selectedFirstOrLastColor: "#00aeef",
-          normalColor: "#FFFFFF",
-          selectedColor: "#71c9ed",
-          rangeHoverColor: "#71c9ed",
-          disabledColor: "#FFFFFF",
-        }),
-      }}
+      color={currentColor}
+      background={currentBackground}
     >
-      {dayLabel}
-    </button>
+      <DayContainer>
+        <DayLabel isSelected={isSelectedStartOrEnd}>{dayLabel}</DayLabel>
+        {isSelectedStartOrEnd && <div>{DateUtils.getDayLetters(date)}</div>}
+      </DayContainer>
+    </DayButton>
   );
 };
+
+const DayButton = styled.button<{ color: string; background: string }>`
+  padding: 8px;
+  border: 0;
+  color: ${(props) => props.color};
+  background: ${(props) => props.background};
+  border-radius: 4px;
+  width: ${Global.sizes.DAY_WIDTH}
+`;
+
+const DayContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const DayLabel = styled.div<{ isSelected: boolean}>`
+  font-size: 1.5em;
+  font-weight: ${props => props.isSelected ? "bold" : "normal"};
+  `
 
 export default Day;

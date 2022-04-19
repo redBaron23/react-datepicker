@@ -9,7 +9,9 @@ export const datepickerContextDefaultValue = {
   isFirstOrLastSelectedDate: (date: Date) => false,
   onDateFocus: (date: Date) => {},
   onDateHover: (date: Date) => {},
-  onDateSelect: (date: Date) => {}
+  onDateSelect: (date: Date) => {},
+  goToDate: (date: Date) => {},
+  activeDate: Date,
 } as any;
 
 export default React.createContext(datepickerContextDefaultValue);

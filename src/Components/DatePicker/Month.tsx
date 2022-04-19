@@ -1,7 +1,10 @@
 import { FirstDayOfWeek, useMonth } from "@datepicker-react/hooks";
+import { useState } from "react";
 import styled from "styled-components";
+import Global from "../../styles/Global";
 import theme from "../../styles/theme";
 import Day from "./Day";
+import MonthModal from "./MonthModal";
 
 interface Props {
   year: number;
@@ -21,25 +24,31 @@ const Month = (props: Props) => {
     firstDayOfWeek,
   });
 
+  const [isMonthModalOpen, setIsMonthModalOpen] = useState(false);
+  const toggleMonthModal = () => setIsMonthModalOpen((prevState) => !prevState);
+
   return (
     <MainContainer>
+      <MonthModal
+        open={isMonthModalOpen}
+        closeModal={() => setIsMonthModalOpen(false)}
+        selectedMonth={month}
+      />
       <Header>
         <Arrow onClick={goToPreviousMonths}>&#60;</Arrow>
-        <strong>{monthLabel}</strong>
+        <MonthLabel onClick={toggleMonthModal}>{monthLabel}</MonthLabel>
         <Arrow onClick={goToNextMonths}>&#62;</Arrow>
       </Header>
-      {/* <div style={{ textAlign: "center", margin: "0 0 16px" }}>
-      </div> */}
-      <WeekDays>
+      <WeekDaysContainer>
         {weekdayLabels.map((dayLabel) => (
-          <div style={{ textAlign: "center" }} key={dayLabel}>
+          <WeekDay key={dayLabel}>
             {/**
              * Just the first letter of the day label
              */}
             {dayLabel[0]}
-          </div>
+          </WeekDay>
         ))}
-      </WeekDays>
+      </WeekDaysContainer>
       <DaysContainer>
         {days.map((day, index) => {
           if (typeof day === "object") {
@@ -61,6 +70,9 @@ const Month = (props: Props) => {
 
 const MainContainer = styled.section`
   background-color: ${theme.colors.primary};
+  width: 50%;
+  margin: 1em;
+  border-radius: 5px;
 `;
 
 const Header = styled.div`
@@ -71,24 +83,37 @@ const Header = styled.div`
   height: 40px;
   align-items: center;
   margin: 0 0 16px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 `;
 
 const Arrow = styled.div`
   font-size: 1.5em;
+  cursor: pointer;
+  padding: 0 0.5em;
 `;
 
-const WeekDays = styled.div`
+const WeekDaysContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   justify-content: center;
   margin-bottom: 10px;
   font-size: 10px;
+  justify-items: center;
+`;
+
+const WeekDay = styled.div`
+  text-align: center;
+  width: ${Global.sizes.DAY_WIDTH};
 `;
 
 const DaysContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  justify-content: center;
+  justify-items: center;
 `;
+
+const MonthLabel = styled.strong`
+  cursor: pointer;
+`
 
 export default Month;
