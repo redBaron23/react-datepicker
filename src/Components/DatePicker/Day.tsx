@@ -86,6 +86,7 @@ const Day = (props: Props) => {
       ref={dayRef}
       color={currentColor}
       background={currentBackground}
+      selected={isSelectedStartOrEnd}
     >
       <DayContainer>
         <DayLabel isSelected={isSelectedStartOrEnd}>{dayLabel}</DayLabel>
@@ -95,13 +96,14 @@ const Day = (props: Props) => {
   );
 };
 
-const DayButton = styled.button<{ color: string; background: string }>`
+const DayButton = styled.button<{ color: string; background: string; selected: boolean }>`
   padding: 8px;
   border: 0;
   color: ${(props) => props.color};
   background: ${(props) => props.background};
   border-radius: 4px;
   width: ${Global.sizes.DAY_WIDTH}
+  cursor: ${(props) => (props.selected ? "default" : "pointer")};
 `;
 
 const DayContainer = styled.div`

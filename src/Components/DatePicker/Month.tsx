@@ -1,6 +1,7 @@
 import { FirstDayOfWeek, useMonth } from "@datepicker-react/hooks";
 import { useState } from "react";
 import styled from "styled-components";
+import { Arrow } from "../../styles/CommonStyles";
 import Global from "../../styles/Global";
 import theme from "../../styles/theme";
 import Day from "./Day";
@@ -70,8 +71,8 @@ const Month = (props: Props) => {
 
 const MainContainer = styled.section`
   background-color: ${theme.colors.primary};
-  width: 50%;
-  margin: 1em;
+  width: 100%;
+  height: 50vh;
   border-radius: 5px;
 `;
 
@@ -80,23 +81,16 @@ const Header = styled.div`
   flex-direction: row;
   justify-content: space-between;
   background-color: ${theme.colors.lightPrimary};
-  height: 40px;
+  height: 4em;
   align-items: center;
-  margin: 0 0 16px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-`;
-
-const Arrow = styled.div`
-  font-size: 1.5em;
-  cursor: pointer;
-  padding: 0 0.5em;
 `;
 
 const WeekDaysContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   justify-content: center;
-  margin-bottom: 10px;
+  margin: 2em 0em;
   font-size: 10px;
   justify-items: center;
 `;
@@ -114,6 +108,10 @@ const DaysContainer = styled.div`
 
 const MonthLabel = styled.strong`
   cursor: pointer;
+  font-size: 1.5em;
+  font-weight: 500;
+  background-color: ${theme.colors.primary};
+  padding: 0.5em;
 `
 
 export default Month;

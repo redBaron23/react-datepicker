@@ -3,8 +3,10 @@ const theme = {
         darkPrimary: '#2760A8',
         primary: '#F2F9FF',
         lightPrimary: '#FFFFFF',
-        lightFontColor: '#A4A9AB',
+        darkFontColor:'#44495D',
+        lightFontColor: '#E5E7E9',
         lightBlue: '#55B0F2',
+        warning: '#FFF4EA',
     }
 }
 
