@@ -39,6 +39,13 @@ class DateUtils {
             hour12: true
         });
     }
+
+    //return a date from a Date (year, month, day) and a string HH:mm AM/PM
+    public stringToDateHours(date: Date, hours: string): Date {
+        const [hour, rest] = hours.split(':');
+        const [minutes, ampm] = rest.split(' ');
+        return new Date(date.getFullYear(), date.getMonth(), date.getDay(), +hour, +minutes, 0)
+    }
 }
 
 export default new DateUtils()

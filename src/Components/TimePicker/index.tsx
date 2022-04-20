@@ -21,6 +21,7 @@ const timeOptions = [
 
 interface Props {
   unavailableDates: Date[];
+  onChange: (date: string) => void;
 }
 
 const TimePicker = (props: Props) => {
@@ -32,6 +33,11 @@ const TimePicker = (props: Props) => {
     [props.unavailableDates]
   );
 
+  const handleOnSelect = (time: string) => {
+    setSelectedTimeOption(time);
+    props.onChange(time);
+  };
+
   return (
     <Container>
       <Label>Select Time</Label>
@@ -39,11 +45,10 @@ const TimePicker = (props: Props) => {
         {timeOptions.map((time, index) => {
           const isDisabled = unavailableDates.includes(time);
           return (
-            <Tooltip content="Not available" disabled={!isDisabled}>
+            <Tooltip content="Not available" disabled={!isDisabled} key={index}>
               <TimeOption
-                key={index}
                 selected={selectedTimeOption === time}
-                onClick={() => setSelectedTimeOption(time)}
+                onClick={() => handleOnSelect(time)}
                 disabled={isDisabled}
               >
                 {time}

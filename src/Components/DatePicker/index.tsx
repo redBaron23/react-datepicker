@@ -7,7 +7,11 @@ import { useState } from "react";
 import DatepickerContext from "./datepickerContext";
 import Month from "./Month";
 
-const DatePicker = () => {
+interface Props {
+  onChange: (date: Date) => void;
+}
+
+const DatePicker = (props: Props) => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [focusedInput, setFocusedInput] = useState<FocusedInput>(START_DATE);
@@ -39,6 +43,7 @@ const DatePicker = () => {
       setStartDate(data.startDate);
       setEndDate(data.startDate);
       setFocusedInput(START_DATE);
+      props.onChange(data.startDate);
   }
 
   return (
