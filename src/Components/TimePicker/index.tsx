@@ -4,17 +4,17 @@ import Icons from "../../assets";
 import { Arrow, Label } from "../../styles/CommonStyles";
 import theme from "../../styles/theme";
 
-//Make an array with 9 elements as time options
+//Make an array with 9 elements as time options with 1 hour interval from 9 AM to 5 PM
 const timeOptions = [
-  "12:00 AM",
-  "12:30 AM",
-  "1:00 AM",
-  "1:30 AM",
-  "2:00 AM",
-  "2:30 AM",
-  "4:00 AM",
-  "4:30 AM",
-  "5:00 AM",
+  "9:00 AM",
+  "10:00 AM",
+  "11:00 AM",
+  "12:00 PM",
+  "1:00 PM",
+  "2:00 PM",
+  "3:00 PM",
+  "4:00 PM",
+  "5:00 PM",
 ];
 
 interface Props {

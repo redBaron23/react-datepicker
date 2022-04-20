@@ -96,24 +96,29 @@ const Day = (props: Props) => {
   );
 };
 
-const DayButton = styled.button<{ color: string; background: string; selected: boolean }>`
+const DayButton = styled.button<{
+  color: string;
+  background: string;
+  selected: boolean;
+}>`
   padding: 8px;
   border: 0;
   color: ${(props) => props.color};
   background: ${(props) => props.background};
   border-radius: 4px;
-  width: ${Global.sizes.DAY_WIDTH}
+  width: ${Global.sizes.DAY_WIDTH};
   cursor: ${(props) => (props.selected ? "default" : "pointer")};
 `;
 
 const DayContainer = styled.div`
   display: flex;
   flex-direction: column;
+  height: ${Global.sizes.DAY_HEIGHT};
 `;
 
-const DayLabel = styled.div<{ isSelected: boolean}>`
+const DayLabel = styled.div<{ isSelected: boolean }>`
   font-size: 1.5em;
-  font-weight: ${props => props.isSelected ? "bold" : "normal"};
-  `
+  font-weight: ${(props) => (props.isSelected ? "bold" : "normal")};
+`;
 
 export default Day;

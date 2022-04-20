@@ -7,10 +7,10 @@ export const datepickerContextDefaultValue = {
   isDateHovered: (date: Date) => false,
   isDateBlocked: (date: Date) => false,
   isFirstOrLastSelectedDate: (date: Date) => false,
-  onDateFocus: (date: Date) => {},
-  onDateHover: (date: Date) => {},
-  onDateSelect: (date: Date) => {},
-  goToDate: (date: Date) => {},
+  onDateFocus: (date: Date) => { },
+  onDateHover: (date: Date) => { },
+  onDateSelect: (date: Date) => { },
+  goToDate: (date: Date) => { },
   activeDate: Date,
 } as any;
 

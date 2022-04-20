@@ -57,6 +57,10 @@ const StyledPopup = styled(Popup)`
   &-content {
     border-radius: 5px;
     padding: 0;
+    width: auto !important;
+  }
+  &-arrow {
+    visibility: hidden;
   }
 `;
 

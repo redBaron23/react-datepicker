@@ -65,7 +65,7 @@ const Month = (props: Props) => {
             );
           }
 
-          return <div key={index} />;
+          return <EmptyDay key={index} />;
         })}
       </DaysContainer>
     </MainContainer>
@@ -75,7 +75,7 @@ const Month = (props: Props) => {
 const MainContainer = styled.section`
   background-color: ${theme.colors.primary};
   width: 100%;
-  height: 50vh;
+  min-height: ${Global.sizes.CALENDAR_HEIGHT};
   border-radius: 5px;
 `;
 
@@ -116,5 +116,7 @@ const MonthLabel = styled.strong`
   background-color: ${theme.colors.primary};
   padding: 0.5em;
 `;
+
+const EmptyDay = styled.div``;
 
 export default Month;

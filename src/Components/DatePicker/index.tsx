@@ -36,13 +36,9 @@ const DatePicker = () => {
   });
 
   function handleDateChange(data: any) {
-    if (!data.focusedInput) {
-      setFocusedInput(START_DATE);
-    } else {
       setStartDate(data.startDate);
-      setEndDate(data.endDate);
-      setFocusedInput(data.focusedInput);
-    }
+      setEndDate(data.startDate);
+      setFocusedInput(START_DATE);
   }
 
   return (
