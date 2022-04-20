@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import styled from "styled-components";
 import Icons from "../../assets";
 import { Arrow, Label } from "../../styles/CommonStyles";
 import theme from "../../styles/theme";
+import DateUtils from "../../Utils/DateUtils";
+import Tooltip from "../Common/Tooltip";
 
 //Make an array with 9 elements as time options with 1 hour interval from 9 AM to 5 PM
 const timeOptions = [
@@ -18,24 +20,35 @@ const timeOptions = [
 ];
 
 interface Props {
+  unavailableDates: Date[];
 }
 
 const TimePicker = (props: Props) => {
   const [selectedTimeOption, setSelectedTimeOption] = useState("");
+
+  const unavailableDates = useMemo(
+    () =>
+      props.unavailableDates.map((date) => DateUtils.dateToStringHours(date)),
+    [props.unavailableDates]
+  );
 
   return (
     <Container>
       <Label>Select Time</Label>
       <GridContainer>
         {timeOptions.map((time, index) => {
+          const isDisabled = unavailableDates.includes(time);
           return (
-            <TimeOption
-              key={index}
-              selected={selectedTimeOption === time}
-              onClick={() => setSelectedTimeOption(time)}
-            >
-              {time}
-            </TimeOption>
+            <Tooltip content="Not available" disabled={!isDisabled}>
+              <TimeOption
+                key={index}
+                selected={selectedTimeOption === time}
+                onClick={() => setSelectedTimeOption(time)}
+                disabled={isDisabled}
+              >
+                {time}
+              </TimeOption>
+            </Tooltip>
           );
         })}
       </GridContainer>
@@ -71,7 +84,7 @@ const GridContainer = styled.div`
   padding: 1em 0em;
 `;
 
-const TimeOption = styled.span<{ selected: boolean }>`
+const TimeOption = styled.span<{ selected: boolean; disabled: boolean }>`
   font-size: 1em;
   background-color: ${theme.colors.primary};
   color: ${theme.colors.darkFontColor};
@@ -84,6 +97,14 @@ const TimeOption = styled.span<{ selected: boolean }>`
     `
         background-color: ${theme.colors.darkPrimary};
         color: ${theme.colors.lightFontColor};
+    `}
+
+  ${(props) =>
+    props.disabled &&
+    `
+        background-color: ${theme.colors.disabledBackground};
+        color: ${theme.colors.disabledText};
+        cursor: default;
     `}
 `;
 
@@ -98,7 +119,7 @@ const Warning = styled.span`
 `;
 
 const CustomLabel = styled(Label)`
-    flex-grow: 0.6;
-`
+  flex-grow: 0.6;
+`;
 
 export default TimePicker;

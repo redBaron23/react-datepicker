@@ -5,6 +5,7 @@ import Global from "../../styles/Global";
 import theme from "../../styles/theme";
 import ColorUtils from "../../Utils/ColorUtils";
 import DateUtils from "../../Utils/DateUtils";
+import Tooltip from "../Common/Tooltip";
 import DatepickerContext from "./datepickerContext";
 
 interface Props {
@@ -58,14 +59,14 @@ const Day = (props: Props) => {
   const getColorFn = ColorUtils.getColor(
     isSelected,
     isSelectedStartOrEnd,
-    disabledDate
+    false,
   );
 
   const currentColor = getColorFn({
     selectedFirstOrLastColor: "#FFFFFF",
     normalColor: "#001217",
     selectedColor: "#FFFFFF",
-    disabledColor: "#808285",
+    disabledColor: theme.colors.disabledText,
   });
 
   const currentBackground = getColorFn({
@@ -73,7 +74,7 @@ const Day = (props: Props) => {
     selectedFirstOrLastColor: theme.colors.darkPrimary,
     selectedColor: "#71c9ed",
     rangeHoverColor: "#71c9ed",
-    disabledColor: "#FFFFFF",
+    disabledColor: theme.colors.disabledBackground,
   });
 
   return (
@@ -107,7 +108,8 @@ const DayButton = styled.button<{
   background: ${(props) => props.background};
   border-radius: 4px;
   width: ${Global.sizes.DAY_WIDTH};
-  cursor: ${(props) => (props.selected ? "default" : "pointer")};
+  cursor: ${(props) =>
+    props.selected || props.disabled ? "default" : "pointer"};
 `;
 
 const DayContainer = styled.div`

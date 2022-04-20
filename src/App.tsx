@@ -4,12 +4,45 @@ import styled from "styled-components";
 import theme from "./styles/theme";
 import { Label } from "./styles/CommonStyles";
 import TimePicker from "./Components/TimePicker";
+import { useMemo } from "react";
+
+interface EventData {
+  id: string;
+  date: Date;
+  email: string;
+}
+
+interface Props {
+  eventsData: EventData[];
+}
 
 function App() {
+  const eventsData = [
+    // date hours from 9.00 AM to 5.00 PM with 1 hour interval
+    {
+      id: "1",
+      date: new Date("2020-06-01T09:00:00"),
+      email: "asd@asd.com",
+    },
+    {
+      id: "2",
+      date: new Date("2020-06-01T10:00:00"),
+      email: "papaa@asd.com",
+    },
+    {
+      id: "3",
+      date: new Date("2020-06-01T11:00:00"),
+      email: "asd",
+    },
+  ];
 
-  const handleSubmit = () => {
+  const handleSubmit = () => {};
 
-  }
+  const unavailableDates = useMemo(
+    () => eventsData.map((event) => event.date),
+    [eventsData]
+  );
+
   return (
     <RootContainer onSubmit={handleSubmit}>
       <Container>
@@ -19,7 +52,7 @@ function App() {
         </HalfContainer>
         <HalfContainer>
           <Input placeholder="Enter your email" required type="email" />
-          <TimePicker />
+          <TimePicker unavailableDates={unavailableDates} />
         </HalfContainer>
       </Container>
       <Button type="submit">Get Appointment</Button>

@@ -10,7 +10,7 @@ interface Props {
   open: boolean;
   closeModal: () => void;
   selectedMonth: number;
-  trigger: JSX.Element;
+  children: JSX.Element;
 }
 
 const MonthModal = (props: Props) => {
@@ -31,10 +31,11 @@ const MonthModal = (props: Props) => {
 
   return (
     <StyledPopup
-      trigger={props.trigger}
+      trigger={props.children}
       closeOnDocumentClick
       onClose={props.closeModal}
       position="bottom center"
+      open={props.open}
     >
       <Modal>
         <MonthContainer>

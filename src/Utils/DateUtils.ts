@@ -28,7 +28,16 @@ class DateUtils {
      * @returns 
      */
     public changeMonth(date: Date, n: number): Date {
-        return new Date(date.getFullYear(),n, date.getDate());
+        return new Date(date.getFullYear(), n, date.getDate());
+    }
+
+    // date to string hours "HH:mm AM/PM"
+    public dateToStringHours(date: Date): string {
+        return date.toLocaleTimeString(undefined, {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true
+        });
     }
 }
 
