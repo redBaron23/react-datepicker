@@ -1,11 +1,11 @@
 import { useDay } from "@datepicker-react/hooks";
+import React from "react";
 import { useContext, useRef } from "react";
 import styled from "styled-components";
 import Global from "../../styles/Global";
 import theme from "../../styles/theme";
 import ColorUtils from "../../Utils/ColorUtils";
 import DateUtils from "../../Utils/DateUtils";
-import Tooltip from "../Common/Tooltip";
 import DatepickerContext from "./datepickerContext";
 
 interface Props {

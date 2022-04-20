@@ -1,5 +1,5 @@
 import { FirstDayOfWeek, useMonth } from "@datepicker-react/hooks";
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Arrow } from "../../styles/CommonStyles";
 import Global from "../../styles/Global";

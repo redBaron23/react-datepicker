@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import styled from "styled-components";

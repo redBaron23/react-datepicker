@@ -1,8 +1,16 @@
 {
-  "name": "picker",
-  "version": "0.1.0",
-  "private": true,
+  "name": "react-custom-date-time-picker",
+  "description": "A customizable date time picker for React",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/redBaron23/react-datepicker"
+  },
+  "bugs": "https://github.com/redBaron23/react-datepicker",
+  "version": "0.0.2",
+  "private": false,
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@datepicker-react/hooks": "^2.8.4",
     "@emotion/core": "^11.0.0",
     "@testing-library/jest-dom": "^5.14.1",
@@ -22,10 +30,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rm -rf ./lib && tsc",
+    "prepare": "yarn build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "author": "redbaron23",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -45,6 +55,10 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.25"
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@types/styled-components": "^5.1.25",
+    "webpack-cli": "^4.9.2"
   }
 }

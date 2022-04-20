@@ -3,7 +3,7 @@ import {
   START_DATE,
   FocusedInput,
 } from "@datepicker-react/hooks";
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DatepickerContext from "./datepickerContext";
 import Month from "./Month";
 
