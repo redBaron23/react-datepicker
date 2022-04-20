@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import styled from "styled-components";
@@ -10,10 +10,11 @@ interface Props {
   open: boolean;
   closeModal: () => void;
   selectedMonth: number;
+  trigger: JSX.Element;
 }
 
 const MonthModal = (props: Props) => {
-  const { focusedDate, goToDate, activeDate } = useContext(DatepickerContext);
+  const { goToDate, activeDate } = useContext(DatepickerContext);
 
   const isMonthSelected = (month: string) => {
     const monthName = DateUtils.getMonthNameByNumber(props.selectedMonth);
@@ -30,9 +31,10 @@ const MonthModal = (props: Props) => {
 
   return (
     <StyledPopup
-      open={props.open}
+      trigger={props.trigger}
       closeOnDocumentClick
       onClose={props.closeModal}
+      position="bottom center"
     >
       <Modal>
         <MonthContainer>
@@ -67,7 +69,7 @@ const MonthContainer = styled.div`
 `;
 
 const Month = styled.div<{ selected: boolean }>`
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 1);
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 20px;
   font-size: 30px;

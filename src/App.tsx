@@ -18,7 +18,7 @@ function App() {
           <DatePicker />
         </HalfContainer>
         <HalfContainer>
-          <Input placeholder="Enter your email" required/>
+          <Input placeholder="Enter your email" required type="email" />
           <TimePicker />
         </HalfContainer>
       </Container>

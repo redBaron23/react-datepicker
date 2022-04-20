@@ -34,12 +34,15 @@ const Month = (props: Props) => {
         open={isMonthModalOpen}
         closeModal={() => setIsMonthModalOpen(false)}
         selectedMonth={month}
+        trigger={
+          <Header>
+            <Arrow onClick={goToPreviousMonths}>&#60;</Arrow>
+            <MonthLabel onClick={toggleMonthModal}>{monthLabel}</MonthLabel>
+            <Arrow onClick={goToNextMonths}>&#62;</Arrow>
+          </Header>
+        }
       />
-      <Header>
-        <Arrow onClick={goToPreviousMonths}>&#60;</Arrow>
-        <MonthLabel onClick={toggleMonthModal}>{monthLabel}</MonthLabel>
-        <Arrow onClick={goToNextMonths}>&#62;</Arrow>
-      </Header>
+
       <WeekDaysContainer>
         {weekdayLabels.map((dayLabel) => (
           <WeekDay key={dayLabel}>
@@ -112,6 +115,6 @@ const MonthLabel = styled.strong`
   font-weight: 500;
   background-color: ${theme.colors.primary};
   padding: 0.5em;
-`
+`;
 
 export default Month;
