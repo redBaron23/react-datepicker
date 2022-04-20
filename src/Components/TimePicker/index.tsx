@@ -22,16 +22,20 @@ const timeOptions = [
 interface Props {
   unavailableDates: Date[];
   onChange: (date: string) => void;
+  currentDate: Date;
 }
 
 const TimePicker = (props: Props) => {
   const [selectedTimeOption, setSelectedTimeOption] = useState("");
 
-  const unavailableDates = useMemo(
-    () =>
-      props.unavailableDates.map((date) => DateUtils.dateToStringHours(date)),
-    [props.unavailableDates]
-  );
+  const unavailableDates = useMemo(() => {
+    setSelectedTimeOption("");
+    return props.unavailableDates
+      .filter((date) =>
+        DateUtils.areSameYearMonthAndDay(props.currentDate, date)
+      )
+      .map((date) => DateUtils.dateToStringHours(date));
+  }, [props.unavailableDates, props.currentDate]);
 
   const handleOnSelect = (time: string) => {
     setSelectedTimeOption(time);

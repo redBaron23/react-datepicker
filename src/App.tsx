@@ -27,18 +27,18 @@ const eventsData = [
   },
   {
     id: "2",
-    date: new Date("2020-06-01T10:00:00"),
+    date: new Date("2022-04-20T12:00:00"),
     email: "papaa@asd.com",
   },
   {
     id: "3",
-    date: new Date("2020-06-01T11:00:00"),
+    date: new Date("2022-04-21T13:00:00"),
     email: "asd",
   },
 ];
 
 function App() {
-  const [currentDate, setCurrentDate] = useState<Date>();
+  const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const [currentTime, setCurrentTime] = useState("");
   const [currentEmail, setCurrentEmail] = useState("");
 
@@ -81,7 +81,7 @@ function App() {
       <Container>
         <HalfContainer>
           <Label>Select Date</Label>
-          <DatePicker onChange={onChangeDate} />
+          <DatePicker onChange={onChangeDate} currentDate={currentDate}/>
         </HalfContainer>
         <HalfContainer>
           <Input
@@ -93,6 +93,7 @@ function App() {
           <TimePicker
             unavailableDates={unavailableDates}
             onChange={onChangeTime}
+            currentDate={currentDate}
           />
         </HalfContainer>
       </Container>

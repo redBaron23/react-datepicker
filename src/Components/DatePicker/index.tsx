@@ -3,17 +3,16 @@ import {
   START_DATE,
   FocusedInput,
 } from "@datepicker-react/hooks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatepickerContext from "./datepickerContext";
 import Month from "./Month";
 
 interface Props {
   onChange: (date: Date) => void;
+  currentDate: Date;
 }
 
 const DatePicker = (props: Props) => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
   const [focusedInput, setFocusedInput] = useState<FocusedInput>(START_DATE);
 
   const {
@@ -32,16 +31,14 @@ const DatePicker = (props: Props) => {
     goToNextMonths,
     goToDate,
   } = useDatepicker({
-    startDate: startDate,
-    endDate: endDate,
+    startDate: props.currentDate,
+    endDate: props.currentDate,
     focusedInput: focusedInput,
     onDatesChange: handleDateChange,
     numberOfMonths: 1,
   });
 
   function handleDateChange(data: any) {
-      setStartDate(data.startDate);
-      setEndDate(data.startDate);
       setFocusedInput(START_DATE);
       props.onChange(data.startDate);
   }
