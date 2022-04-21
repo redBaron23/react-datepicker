@@ -13,8 +13,14 @@ interface EventData {
   email: string;
 }
 
+interface EventPayload {
+  email: string;
+  date: Date;
+}
+
 interface Props {
   eventsData: EventData[];
+  onSend: (eventPaypload: EventPayload) => void;
 }
 
 function DateTimePicker(props: Props) {
@@ -51,9 +57,9 @@ function DateTimePicker(props: Props) {
     const eventPayload = {
       date: dateToSubmit,
       email: currentEmail,
-    };
+    } as EventPayload;
 
-    console.log(eventPayload);
+    props.onSend(eventPayload);
   };
 
   return (

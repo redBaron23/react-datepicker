@@ -22,7 +22,12 @@ const eventsData = [
 ];
 
 function App() {
-  return <DateTimePicker eventsData={eventsData} />;
+  return (
+    <DateTimePicker
+      eventsData={eventsData}
+      onSend={(event) => console.log(event)}
+    />
+  );
 }
 
 export default App;
