@@ -48,16 +48,31 @@ const TimePicker = (props: Props) => {
       <GridContainer>
         {timeOptions.map((time, index) => {
           const isDisabled = unavailableDates.includes(time);
-          return (
-            <Tooltip content="Not available" disabled={!isDisabled} key={index}>
-              <TimeOption
-                selected={selectedTimeOption === time}
-                onClick={() => handleOnSelect(time)}
-                disabled={isDisabled}
+          if (isDisabled) {
+            return (
+              <Tooltip
+                content="Not available"
+                disabled={!isDisabled}
+                key={index}
               >
-                {time}
-              </TimeOption>
-            </Tooltip>
+                <TimeOption
+                  selected={selectedTimeOption === time}
+                  disabled={isDisabled}
+                >
+                  {time}
+                </TimeOption>
+              </Tooltip>
+            );
+          }
+
+          return (
+            <TimeOption
+              selected={selectedTimeOption === time}
+              onClick={() => handleOnSelect(time)}
+              disabled={isDisabled}
+            >
+              {time}
+            </TimeOption>
           );
         })}
       </GridContainer>

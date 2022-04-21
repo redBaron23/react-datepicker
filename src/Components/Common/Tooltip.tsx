@@ -22,7 +22,7 @@ const Tooltip = (props: Props) => {
           {props.children}
         </Container>
       }
-      position="right center"
+      position="bottom center"
       closeOnDocumentClick
       open={open}
     >
