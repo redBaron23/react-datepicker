@@ -68,7 +68,7 @@ const BoxText = styled.a`
 const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
 `;
 
