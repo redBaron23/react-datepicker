@@ -30,8 +30,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf ./lib && tsc",
-    "prepare": "yarn build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
