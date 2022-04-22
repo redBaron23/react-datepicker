@@ -1,6 +1,8 @@
 import "./App.css";
 import DateTimePicker from "./Components/DateTimePicker";
 import React from "react";
+import DataModal from "./Components/DataModal/DataModal";
+import styled from "styled-components";
 
 const eventsData = [
   // date hours from 9.00 AM to 5.00 PM with 1 hour interval
@@ -23,11 +25,18 @@ const eventsData = [
 
 function App() {
   return (
-    <DateTimePicker
-      eventsData={eventsData}
-      onSend={(event) => console.log(event)}
-    />
+    // <DateTimePicker
+    //   eventsData={eventsData}
+    //   onSend={(event) => console.log(event)}
+    // />
+    <Container>
+      <DataModal />
+    </Container>
   );
 }
+
+const Container = styled.div`
+  padding: 5em;
+`;
 
 export default App;
